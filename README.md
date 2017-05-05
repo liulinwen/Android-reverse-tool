@@ -12,7 +12,6 @@ Android reverse tool
 将apk转化为smali
 
 * dex2jar
-
 讲dex反编译为jar
 
 * jadx
@@ -22,6 +21,5 @@ GUI化的逆向工具
 将jar包反编译为java代码
 
 * jeb
-
 神器，apktool一般无法逆向的，使用这个就可能可以
 
