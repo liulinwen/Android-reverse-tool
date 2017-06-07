@@ -1,7 +1,8 @@
 @echo off
+echo cracked by qtfreet00
 
 rem Start-up script for JEB2 (Windows Console)
-set JAVA_HOME=D:\Java\jre1.8.0_111
+
 rem Used to circumvent the double-quote in var issue with Batch scripts
 set argCount=0
 for %%x in (%*) do set /A argCount+=1
@@ -9,7 +10,7 @@ for %%x in (%*) do set /A argCount+=1
 rem Prefer a JDK over a JRE
 if defined JAVA_HOME (set base="%JAVA_HOME%\bin") else (set base="%SystemRoot%\System32")
 set JAVA=%base%\java.exe
-
+set DECOMPILER="%~dp0bin\plugins\org.eclipse.equinox.launcher_1.3.100.v20150511-1540.jar"
 rem Note: If the Java path generation does not yield a correct result, manually set
 rem the JAVA variable (defined above) to a correct value
 if exist %JAVA% goto :checkdep
@@ -34,7 +35,7 @@ if "%argCount%" == "0" goto :startjeb
 if %1 == -c goto :startraw
 
 :startjeb
-"%~dp0bin\jeb.exe" -data "%~dp0bin\workspace" %*
+%JAVA% -Xmx4096m -XX:-UseParallelGC -XX:MinHeapFreeRatio=15 -javaagent:jebloader.jar -jar %DECOMPILER% %*
 exit 0
 
 :startraw
